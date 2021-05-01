@@ -1,0 +1,17 @@
+build/
+Build/
+Output/
+*.nso
+*.nro
+*.elf
+.vscode/
+.vs/
+bin/
+obj/
+target/
+.settings/
+.classpath
+.project
+*.cmd
+*.pfs0
+*.nacp
