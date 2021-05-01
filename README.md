@@ -15,8 +15,8 @@ echo -----------------------------------
 
 ```
 Deberas escribir los valores según necesites
-<li>APP_ICON icono dell nsp 
-<li>APP_TITLE Titulo del NSP
+<li>APP_ICON icono del nsp 
+<li>APP_TITLE Titulo del nsp
 <li>APP_AUTHOR El autor del nsp
 <li>APP_VERSION Version Pude ser lo que sea solo numeros
 * importantes
