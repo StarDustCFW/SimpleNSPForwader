@@ -50,8 +50,13 @@ ARCH	:=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE
 
 CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
 			$(ARCH) $(DEFINES)
+# -----
+RESULT1 = $(subst /,\/,$(APP_USE))
+RESULT2 = $(subst /,\/,$(APP_USEL))
+$(info $(RESULT1))
+$(info $(RESULT2))
 
-CFLAGS	+=	$(INCLUDE) -D__SWITCH__ -DTITLE='"$(APP_TITLE)"' -DVERSION='"$(APP_VERSION)"' -DUSE='"$(APP_USE)"' -DUSEL='"$(APP_USEL)"'
+CFLAGS	+=	$(INCLUDE) -D__SWITCH__ -DTITLE='"$(APP_TITLE)"' -DVERSION='"$(APP_VERSION)"' -DUSE='"$(RESULT1)"' -DUSEL='"$(RESULT2)"'
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 
