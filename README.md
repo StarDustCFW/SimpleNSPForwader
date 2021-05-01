@@ -16,11 +16,11 @@ echo -----------------------------------
 
 ```
 Deberas escribir los valores según necesites
-<li>APP_ICON icono del nsp 
-<li>APP_TITLE Titulo del nsp
-<li>APP_AUTHOR El autor del nsp
-<li>APP_VERSION Version Pude ser lo que sea solo numeros
-* importantes
+<li>APP_ICON icono del nsp </li>
+<li>APP_TITLE Titulo del nsp</li>
+<li>APP_AUTHOR El autor del nsp</li>
+<li>APP_VERSION Version Pude ser lo que sea solo numeros</li>
+<lu>importantes</lu>
 <li>APP_TITLEID Title ID del nsp
-<li>APP_USEL es la ruta principal que se usara primero
-<li>APP_USE Ruta alternativa si la primera no existe 
+<li>APP_USEL es la ruta principal que se usara primero</li>
+<li>APP_USE Ruta alternativa si la primera no existe </li>
