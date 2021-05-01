@@ -162,7 +162,7 @@ $(BUILD):
 	mkdir -p $(CURDIR)/Control
 	@cp $(OUTPUT).nacp $(CURDIR)/Output/control/control.nacp
 	@cp $(CURDIR)/$(APP_ICON) $(CURDIR)/Output/control/icon_AmericanEnglish.dat
-	@$(CURDIR)/BuildTools/hacbrewpack.exe --exefsdir build/exefs -k $(CURDIR)/BuildTools/keys.dat --titleid $(APP_TITLEID) --noromfs --nologo --controldir $(CURDIR)/Output/control --htmldocdir $(CURDIR)/HtmlDoc --nspdir $(CURDIR)/build
+	@$(CURDIR)/BuildTools/hacbrewpack.exe --exefsdir build/exefs -k $(CURDIR)/BuildTools/keys.dat --titleid $(APP_TITLEID) --noromfs --nologo --controldir $(CURDIR)/Output/control --htmldocdir $(CURDIR)/HtmlDoc --backupdir $(CURDIR)/build --nspdir $(CURDIR)/build
 	@rm -rf $(CURDIR)/Output/control
 #	@rm -rf $(CURDIR)/Output/temp
 	@mv $(CURDIR)/build/$(APP_TITLEID).nsp "$(CURDIR)/$(APP_TITLE)[$(APP_TITLEID)][v0].nsp"
