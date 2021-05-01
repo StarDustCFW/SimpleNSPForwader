@@ -24,3 +24,5 @@ Deberas escribir los valores según necesites
 <li>APP_TITLEID Title ID del nsp
 <li>APP_USEL es la ruta principal que se usara primero</li>
 <li>APP_USE Ruta alternativa si la primera no existe </li>
+
+* Ejecuta compile.bat y deberas otener el nsp justo al lado
