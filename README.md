@@ -1,4 +1,5 @@
 # SimpleNSPForwader
+* Descarga este [Repositorio](https://github.com/StarDustCFW/SimpleNSPForwader/archive/refs/heads/main.zip)
 * Instala [devkitPro](https://github.com/devkitPro/installer/releases/latest)
 * Edita [compile.bat](/compile.bat)
 ```bat
