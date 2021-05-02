@@ -1,6 +1,28 @@
 # SimpleNSPForwader
 * Descarga este [Repositorio](https://github.com/StarDustCFW/SimpleNSPForwader/archive/refs/heads/main.zip)
 * Instala [devkitPro](https://github.com/devkitPro/installer/releases/latest)
+* Ejecuta Custom.bat y entra los valores requeridos 
+```console
+------------------------------------------
+Icono:                    Icon.jpg
+Titulo:                   RetroArch
+Nombre del Autor:         Kronos2308
+Vercion:                  1.9.5
+El Title ID:              05B80C7D3B860000
+Ruta del NRO:             sdmc:/switch/retroarch_switch/retroarch_switch.nro
+Ruta Alternativa del NRO: sdmc:/switch/retroarch_switch.nro
+-----------------------------------
+---------------------------------------------------------
+* Escribe el valor que quieres modificar y pulsa enter
+* Pulsa solo enter para dejar el valor como esta
+---------------------------------------------------------
+
+```
+* deberás obtener el nsp justo al lado
+
+
+## Alternativa
+
 * Edita [compile.bat](/compile.bat)
 ```bat
 echo ------------------------------------------
@@ -25,4 +47,4 @@ Deberas escribir los valores según necesites
 <li>APP_USEL es la ruta principal que se usara primero</li>
 <li>APP_USE Ruta alternativa si la primera no existe </li>
 
-* Ejecuta compile.bat y deberas otener el nsp justo al lado
+* Ejecuta compile.bat y deberías obtener el nsp justo al lado

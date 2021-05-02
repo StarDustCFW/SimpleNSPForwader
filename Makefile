@@ -51,10 +51,8 @@ ARCH	:=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE
 CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
 			$(ARCH) $(DEFINES)
 # -----
-RESULT1 = $(subst /,\/,$(APP_USE))
-RESULT2 = $(subst /,\/,$(APP_USEL))
-$(info $(RESULT1))
-$(info $(RESULT2))
+RESULT1 = $(subst /,\x2F,$(APP_USE))
+RESULT2 = $(subst /,\x2F,$(APP_USEL))
 
 CFLAGS	+=	$(INCLUDE) -D__SWITCH__ -DTITLE='"$(APP_TITLE)"' -DVERSION='"$(APP_VERSION)"' -DUSE='"$(RESULT1)"' -DUSEL='"$(RESULT2)"'
 
@@ -166,6 +164,13 @@ $(BUILD):
 	@rm -rf $(CURDIR)/Output/control
 #	@rm -rf $(CURDIR)/Output/temp
 	@mv $(CURDIR)/build/$(APP_TITLEID).nsp "$(CURDIR)/$(APP_TITLE)[$(APP_TITLEID)][v0].nsp"
+	$(info $(APP_TITLE))
+	$(info $(APP_AUTHOR))
+	$(info $(APP_VERSION))
+	$(info $(APP_TITLEID))
+	$(info $(APP_ICON))
+	$(info $(APP_USEL))
+	$(info $(APP_USE))
 
 #---------------------------------------------------------------------------------
 clean:
