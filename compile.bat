@@ -1,13 +1,13 @@
 @echo off
 echo ------------------------------------------
 rem Edit This
-set APP_ICON=Icon.jpg
-set APP_TITLE=RetroArch
+set APP_ICON=Goldleaf.jpg
+set APP_TITLE=Goldleaf
 set APP_AUTHOR=Kronos2308
-set APP_VERSION=1.9.5
-set APP_TITLEID=05B80C7D3B860000
-set APP_USEL=sdmc:/switch/retroarch_switch/retroarch_switch.nro
-set APP_USE=sdmc:/switch/retroarch_switch.nro
+set APP_VERSION=0.2
+set APP_TITLEID=050032A5CF12E000
+set APP_USEL=sdmc:/switch/Goldleaf/Goldleaf.nro
+set APP_USE=sdmc:/switch/Goldleaf.nro
 echo -----------------------------------
 
 make
