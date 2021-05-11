@@ -3,7 +3,8 @@
 
 ## Método de uso
 * 1 Descarga este [Repositorio](https://github.com/StarDustCFW/SimpleNSPForwader/archive/refs/heads/main.zip)
-* 2 Ejecuta Custom.bat y entra los valores requeridos 
+* 2 Instala [devkitPro](https://github.com/devkitPro/installer/releases/latest)
+* 3 Ejecuta Custom.bat y entra los valores requeridos 
 ```console
 ------------------------------------------
 Icono:                    Icon.jpg
@@ -25,7 +26,8 @@ Ruta Alternativa del NRO: sdmc:/switch/retroarch_switch.nro
 
 ## Metodo Alternativo
 * 1 Descarga este [Repositorio](https://github.com/StarDustCFW/SimpleNSPForwader/archive/refs/heads/main.zip)
-* 2 Edita [compile.bat](/compile.bat)
+* 2 Instala [devkitPro](https://github.com/devkitPro/installer/releases/latest)
+* 3 Edita [compile.bat](/compile.bat)
 ```bat
 echo ------------------------------------------
 rem Edit This
@@ -49,4 +51,4 @@ Deberas escribir los valores según necesites
 <li>APP_USEL es la ruta principal que se usara primero</li>
 <li>APP_USE Ruta alternativa si la primera no existe </li>
 
-* 3 Ejecuta compile.bat y deberías obtener el nsp justo al lado
+* 4 Ejecuta compile.bat y deberías obtener el nsp justo al lado

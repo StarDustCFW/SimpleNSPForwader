@@ -1,0 +1,102 @@
+<html>
+<HEAD>
+<HTA:APPLICATION ID="oHTA"
+     APPLICATIONNAME="myApp"
+     BORDER="thin"
+     BORDERSTYLE="normal"
+     CAPTION="yes"
+     ICON="BuildTools\icon.ico"
+	 SCROLL="no"
+     MAXIMIZEBUTTON="no"
+     MINIMIZEBUTTON="yes"
+     SHOWINTASKBAR="yes"
+     SINGLEINSTANCE="yes"
+     SYSMENU="yes"
+     VERSION="-.-"
+	 CONTEXTMENU="no"
+     WINDOWSTATE="normal"/>  
+<SCRIPT Language="VBScript">
+Sub Window_onLoad
+On Error Resume Next
+    window.resizeTo 400 , 300
+	Set objFSO = CreateObject("Scripting.FileSystemObject")
+	Set f = objFSO.OpenTextFile("V")
+	document.title= document.title & f.ReadLine
+	
+	For Each objFolder In objFSO.GetFolder("AAA").SubFolders
+		Set opt = document.createElement("option")
+		myselect.options.add(opt)
+		opt.text = objFolder.Name
+		opt.value = objFolder.Name
+	Next
+End Sub
+
+Sub SelectFile
+    strStartPath = ""
+    strFilter = "Image (*.jpg;*.png;*.apng)|*.jpg;*.png;*.apng|All Files (*.*)|*.*|"
+    strCaption = "Select a File"
+	strPath = Dlg.openfiledlg(CStr(strStartPath), , CStr(strFilter), CStr(strCaption))
+	If(strPath = "") Then 
+	else	
+		APP_ICON.value = strPath
+		prev.src=strPath
+	End If
+End Sub
+
+Sub Process
+On Error Resume Next
+    'Get file path from INPUT
+    Dim file: file = APP_ICON.Value
+    Dim selects: selects = myselect.Value
+
+	'hide and show buttons
+	logs.style.display= "table"
+	comenz.style.display= "none"
+	logs.Value =  APP_TITLE.Value+"["+APP_TITLEID.Value+"][v0].nsp"
+    Set objShell = CreateObject("Wscript.Shell")
+	objShell.Run "cmd /c mkdir BuildTools\control",0,true
+	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextArgv",0,true
+	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextNroPath",0,true
+	objShell.Run "copy "+Chr(34)+APP_ICON.Value+Chr(34)+" BuildTools\control\icon_AmericanEnglish.dat",0,true
+	objShell.Run "cmd /c BuildTools\hacbrewpack.exe --titlepublisher "+Chr(34)+APP_AUTHOR.Value+Chr(34)+" --titlename "+Chr(34)+APP_TITLE.Value+Chr(34)+" --titleid "+APP_TITLEID.Value+" --nologo --romfs BuildTools\romfs --controldir BuildTools\control --htmldocdir BuildTools\HtmlDoc --exefsdir BuildTools\exefs -k BuildTools\keys.dat --nspdir .\",0,true
+	objShell.Run "cmd /c move /y "+LCase(APP_TITLEID.Value)+".nsp "+Chr(34)+APP_TITLE.Value+" ["+APP_TITLEID.Value+"][v0].nsp"+Chr(34),0,true
+	objShell.Run "cmd /c rmdir /S/Q hacbrewpack_backup",0,true
+	objShell.Run "cmd /c del BuildTools\control\icon_AmericanEnglish.dat",0,true
+	objShell.PopUp "Termine con: "+APP_TITLE.Value+"["+APP_TITLEID.Value+"][v0].nsp",8,"Terminado",64
+	
+	'hide and show buttons
+	logs.style.display= "none"
+	comenz.style.display= "table"
+End Sub
+</SCRIPT>
+</HEAD>
+<body style="background-color: #aaaaaa; color: black;text-align: left;" id="body">
+<title>SimpleNSPForwader Kronos2308 -.- v</title>
+<p style="background-color: #cccccc">
+SimpleNSPForwader<br>
+
+</p>
+<img name="prev" src="Icon.jpg" alt="none" style="position:absolute;right:10; width:80px; height:80px;"><br>
+Icono:  <input type="text" name="APP_ICON" Value="Icon.jpg" onClick="SelectFile" size="20"><br>
+Titulo:  <input type="text" name="APP_TITLE" Value="RetroArch" size="30"><br>
+Autor:  <input type="text" name="APP_AUTHOR" Value="Kronos2308" size="30"><br>
+Title ID: <input type="text" name="APP_TITLEID" Value="05B80C7D3B860000" size="30"><br>
+NRO:  sdmc:<input type="text" name="APP_USEL" Value="/switch/retroarch_switch.nro" size="30"><br>
+<input type="text" name="logs" style="display: none" size="50"><br>
+<input style="background-color: #888888; border: 2px solid white; padding: 5px 7px;	color: white;	font-size: 14px;" type="button" name="comenz" onClick="Process" value="Crear NSP">
+<OBJECT id=Dlg classid="CLSID:3050F4E1-98B5-11CF-BB82-00AA00BDCE0B" width=0 height=0>
+</body>
+<!--
+set APP_ICON=Icon.jpg
+set =
+set =
+set =
+set =
+#63b6eb
+#056aab
+FirmW <select name="myselect"><option value="all">Todos</option></select><br>
+<input style="background-color: #0994ed; border: 2px solid white;	color: white;" type="button" name="brow" onClick="SelectFile" value="Browse..."><br><br>
+0100000000000023
+010000000000002D
+-->
+</html>
