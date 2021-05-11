@@ -20,15 +20,9 @@ Sub Window_onLoad
 On Error Resume Next
     window.resizeTo 400 , 300
 	Set objFSO = CreateObject("Scripting.FileSystemObject")
-	Set f = objFSO.OpenTextFile("V")
+	Set f = objFSO.OpenTextFile("BuildTools\V")
 	document.title= document.title & f.ReadLine
-	
-	For Each objFolder In objFSO.GetFolder("AAA").SubFolders
-		Set opt = document.createElement("option")
-		myselect.options.add(opt)
-		opt.text = objFolder.Name
-		opt.value = objFolder.Name
-	Next
+
 End Sub
 
 Sub SelectFile
@@ -67,7 +61,7 @@ On Error Resume Next
 	'hide and show buttons
 	logs.style.display= "table"
 	comenz.style.display= "none"
-	logs.Value =  APP_TITLE.Value+"["+APP_TITLEID.Value+"][v0].nsp"
+	logs.Value =  "Proseando"
     Set objShell = CreateObject("Wscript.Shell")
 	objShell.Run "cmd /c mkdir BuildTools\control",0,true
 	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextArgv",0,true
@@ -77,6 +71,7 @@ On Error Resume Next
 	objShell.Run "cmd /c move /y "+LCase(APP_TITLEID.Value)+".nsp "+Chr(34)+APP_TITLE.Value+" ["+APP_TITLEID.Value+"][v0].nsp"+Chr(34),0,true
 	objShell.Run "cmd /c rmdir /S/Q hacbrewpack_backup",0,true
 	objShell.Run "cmd /c del BuildTools\control\icon_AmericanEnglish.dat",0,true
+	logs.Value =  APP_TITLE.Value+"["+APP_TITLEID.Value+"][v0].nsp"
 	objShell.PopUp "Termine con: "+APP_TITLE.Value+"["+APP_TITLEID.Value+"][v0].nsp",8,"Terminado",64
 	
 	'hide and show buttons
