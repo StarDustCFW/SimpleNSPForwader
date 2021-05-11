@@ -43,6 +43,21 @@ Sub SelectFile
 	End If
 End Sub
 
+Function RepeatString( number, text )
+    Redim buffer(number)
+    RepeatString = Join( buffer, text )
+End Function
+
+Sub RandTitle
+On Error Resume Next
+    Set objShell = CreateObject("Wscript.Shell")
+    intValue = CInt(Rnd * 32768)
+	hexvalstr = Hex(intValue)
+	Malue = 11 - Len(hexvalstr)
+	extra = RepeatString( Malue, "0" )
+	APP_TITLEID.Value="05" + hexvalstr + extra + "000"
+End Sub
+
 Sub Process
 On Error Resume Next
     'Get file path from INPUT
@@ -73,17 +88,24 @@ End Sub
 <body style="background-color: #aaaaaa; color: black;text-align: left;" id="body">
 <title>SimpleNSPForwader Kronos2308 -.- v</title>
 <p style="background-color: #cccccc">
-SimpleNSPForwader<br>
-
+SimpleNSPForwader
 </p>
-<img name="prev" src="Icon.jpg" alt="none" style="position:absolute;right:10; width:80px; height:80px;"><br>
-Icono:  <input type="text" name="APP_ICON" Value="Icon.jpg" onClick="SelectFile" size="20"><br>
-Titulo:  <input type="text" name="APP_TITLE" Value="RetroArch" size="30"><br>
-Autor:  <input type="text" name="APP_AUTHOR" Value="Kronos2308" size="30"><br>
-Title ID: <input type="text" name="APP_TITLEID" Value="05B80C7D3B860000" size="30"><br>
-NRO:  sdmc:<input type="text" name="APP_USEL" Value="/switch/retroarch_switch.nro" size="30"><br>
+<img name="prev" src="Icon.jpg" alt="none" style="position:absolute;right:10;top:15; width:80px; height:80px;border: 2px solid white;">
+<div style="background-color: #cccccc">
+&nbsp;Icono: &nbsp;&nbsp; <input type="text" name="APP_ICON" Value="Icon.jpg" size="20">
+<input style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow2" onClick="SelectFile" value="Abrir">
+<br>
+&nbsp;Titulo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_TITLE" Value="RetroArch" size="30"><br>
+&nbsp;Autor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_AUTHOR" Value="Kronos2308" size="30"><br>
+&nbsp;Title ID:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_TITLEID" Value="05B80C7D3B860000" size="30">
+<input style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow" onClick="RandTitle" value="Rand">
+<br>
+&nbsp;NRO: sdmc:<input type="text" name="APP_USEL" Value="/switch/retroarch_switch.nro" size="30"><br>
 <input type="text" name="logs" style="display: none" size="50"><br>
+</div>
+<br>
 <input style="background-color: #888888; border: 2px solid white; padding: 5px 7px;	color: white;	font-size: 14px;" type="button" name="comenz" onClick="Process" value="Crear NSP">
+
 <OBJECT id=Dlg classid="CLSID:3050F4E1-98B5-11CF-BB82-00AA00BDCE0B" width=0 height=0>
 </body>
 <!--
