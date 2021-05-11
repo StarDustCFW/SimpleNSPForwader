@@ -4,7 +4,7 @@
 ## Método de uso
 * 1 Descarga este [Repositorio](https://github.com/StarDustCFW/SimpleNSPForwader/archive/refs/heads/main.zip)
 * 2 Ejecuta SimpleNSPForwader.hta y entra los valores requeridos 
-![nope](/BuildTools/shot.png")
+<br>![nope](BuildTools/shot.png)<br>
 * 4 deberás obtener el nsp justo al lado
 * * * *
 
