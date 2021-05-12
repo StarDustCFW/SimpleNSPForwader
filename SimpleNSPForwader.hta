@@ -61,7 +61,7 @@ On Error Resume Next
 	'hide and show buttons
 	logs.style.display= "table"
 	comenz.style.display= "none"
-	logs.Value =  "Proseando"
+	logs.Value =  "Procesando..."
     Set objShell = CreateObject("Wscript.Shell")
 	objShell.Run "cmd /c mkdir BuildTools\control",0,true
 	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextArgv",0,true
