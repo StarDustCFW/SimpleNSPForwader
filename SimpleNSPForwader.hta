@@ -18,18 +18,21 @@
 <SCRIPT Language="VBScript">
 Sub Window_onLoad
 On Error Resume Next
-    window.resizeTo 400 , 300
+    window.resizeTo 400 , 320
 	Set objFSO = CreateObject("Scripting.FileSystemObject")
 	Set f = objFSO.OpenTextFile("BuildTools\V")
 	document.title= document.title & f.ReadLine
-
 End Sub
 
 Sub SelectFile
+	Set objShell = CreateObject("Wscript.Shell")
+	
+    strCurretPath = objShell.CurrentDirectory & "\"
     strStartPath = ""
-    strFilter = "Image (*.jpg;*.png;*.apng)|*.jpg;*.png;*.apng|All Files (*.*)|*.*|"
-    strCaption = "Select a File"
+    strFilter = "Imagen (*.jpg)|*.jpg|All Files (*.*)|*.*|"
+    strCaption = "Selecciona el Icono: "
 	strPath = Dlg.openfiledlg(CStr(strStartPath), , CStr(strFilter), CStr(strCaption))
+	strPath = Replace (strPath, strCurretPath ,"")
 	If(strPath = "") Then 
 	else	
 		APP_ICON.value = strPath
@@ -45,7 +48,10 @@ End Function
 Sub RandTitle
 On Error Resume Next
     Set objShell = CreateObject("Wscript.Shell")
-    intValue = CInt(Rnd * 32768)
+	Dim max,min
+	max=999999999
+	min=1	
+    intValue = Int((max-min+1)*Rnd+min)
 	hexvalstr = Hex(intValue)
 	Malue = 11 - Len(hexvalstr)
 	extra = RepeatString( Malue, "0" )
@@ -64,10 +70,10 @@ On Error Resume Next
 	logs.Value =  "Procesando..."
     Set objShell = CreateObject("Wscript.Shell")
 	objShell.Run "cmd /c mkdir BuildTools\control",0,true
-	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextArgv",0,true
-	objShell.Run "cmd /c echo sdmc:"+APP_USEL.Value+"> BuildTools\romfs\nextNroPath",0,true
+	objShell.Run "cmd /c echo sdmc:"+APP_USE.Value+"> BuildTools\romfs\nextArgv",0,true
+	objShell.Run "cmd /c echo sdmc:"+APP_USE.Value+"> BuildTools\romfs\nextNroPath",0,true
 	objShell.Run "copy "+Chr(34)+APP_ICON.Value+Chr(34)+" BuildTools\control\icon_AmericanEnglish.dat",0,true
-	objShell.Run "cmd /c BuildTools\hacbrewpack.exe --titlepublisher "+Chr(34)+APP_AUTHOR.Value+Chr(34)+" --titlename "+Chr(34)+APP_TITLE.Value+Chr(34)+" --titleid "+APP_TITLEID.Value+" --nologo --romfs BuildTools\romfs --controldir BuildTools\control --htmldocdir BuildTools\HtmlDoc --exefsdir BuildTools\exefs -k BuildTools\keys.dat --nspdir .\",0,true
+	objShell.Run "BuildTools\hacbrewpack.exe --titlepublisher "+Chr(34)+APP_AUTHOR.Value+Chr(34)+" --titlename "+Chr(34)+APP_TITLE.Value+Chr(34)+" --titleid "+APP_TITLEID.Value+" --nologo --romfs BuildTools\romfs --controldir BuildTools\control --htmldocdir BuildTools\HtmlDoc --exefsdir BuildTools\exefs -k BuildTools\keys.dat --nspdir .\",0,true
 	objShell.Run "cmd /c move /y "+LCase(APP_TITLEID.Value)+".nsp "+Chr(34)+APP_TITLE.Value+" ["+APP_TITLEID.Value+"][v0].nsp"+Chr(34),0,true
 	objShell.Run "cmd /c rmdir /S/Q hacbrewpack_backup",0,true
 	objShell.Run "cmd /c del BuildTools\control\icon_AmericanEnglish.dat",0,true
@@ -79,38 +85,38 @@ On Error Resume Next
 	comenz.style.display= "table"
 End Sub
 </SCRIPT>
+<style>
+.SelFile {background-color: #888888; border: 2px solid white; padding: 5px 7px;	color: white;	font-size: 14px;}
+</style>
+
 </HEAD>
 <body style="background-color: #aaaaaa; color: black;text-align: left;" id="body">
 <title>SimpleNSPForwader Kronos2308 -.- v</title>
 <p style="background-color: #cccccc">
 SimpleNSPForwader
 </p>
-<img name="prev" src="Icon.jpg" alt="none" style="position:absolute;right:10;top:15; width:80px; height:80px;border: 2px solid white;">
+
+<img name="prev" onmouseenter="prev.style.border='2px solid #0994ed'" onmouseleave="prev.style.border='2px solid white'" title="Cambiar Icono" src="Icon.jpg" alt="none" style="position:absolute;right:10;top:15; width:80px; height:80px;border: 2px solid white;" onClick="SelectFile">
 <div style="background-color: #cccccc">
-&nbsp;Icono: &nbsp;&nbsp; <input type="text" name="APP_ICON" Value="Icon.jpg" size="20">
-<input style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow2" onClick="SelectFile" value="Abrir">
+&nbsp;Icono:&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="APP_ICON" Value="Icon.jpg" size="30">
 <br>
 &nbsp;Titulo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_TITLE" Value="RetroArch" size="30"><br>
 &nbsp;Autor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_AUTHOR" Value="Kronos2308" size="30"><br>
 &nbsp;Title ID:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="APP_TITLEID" Value="05B80C7D3B860000" size="30">
-<input style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow" onClick="RandTitle" value="Rand">
+<input onmouseenter="brow.style.border='2px solid #0994ed'" onmouseleave="brow.style.border='2px solid white'" title="Establecer Title ID Al Azar" style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow" onClick="RandTitle" value="Rand">
 <br>
-&nbsp;NRO: sdmc:<input type="text" name="APP_USEL" Value="/switch/retroarch_switch.nro" size="30"><br>
+<br>
+&nbsp;NRO: sdmc:<input type="text" name="APP_USE" Value="/switch/retroarch_switch.nro" size="40"><br>
 <input type="text" name="logs" style="display: none" size="50"><br>
 </div>
 <br>
-<input style="background-color: #888888; border: 2px solid white; padding: 5px 7px;	color: white;	font-size: 14px;" type="button" name="comenz" onClick="Process" value="Crear NSP">
+<input onmouseenter="comenz.style.border='2px solid #0994ed'" onmouseleave="comenz.style.border='2px solid white'" title="Crear el NSP" class="SelFile" style="" type="button" name="comenz" onClick="Process" value="Crear NSP">
 
 <OBJECT id=Dlg classid="CLSID:3050F4E1-98B5-11CF-BB82-00AA00BDCE0B" width=0 height=0>
 </body>
 <!--
+<input title="Cambiar Icono" style="background-color: #888888; border: 2px solid white;	color: white;" type="button" name="brow2" onClick="SelectFile" value="Abrir">
 set APP_ICON=Icon.jpg
-set =
-set =
-set =
-set =
-#63b6eb
-#056aab
 FirmW <select name="myselect"><option value="all">Todos</option></select><br>
 <input style="background-color: #0994ed; border: 2px solid white;	color: white;" type="button" name="brow" onClick="SelectFile" value="Browse..."><br><br>
 0100000000000023
