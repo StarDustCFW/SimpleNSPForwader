@@ -18,7 +18,7 @@
 <SCRIPT Language="VBScript">
 Sub Window_onLoad
 On Error Resume Next
-    window.resizeTo 400 , 320
+	window.resizeTo 400 , 320
 	Set objFSO = CreateObject("Scripting.FileSystemObject")
 	Set f = objFSO.OpenTextFile("BuildTools\V")
 	document.title= document.title & f.ReadLine
@@ -26,11 +26,10 @@ End Sub
 
 Sub SelectFile
 	Set objShell = CreateObject("Wscript.Shell")
-	
-    strCurretPath = objShell.CurrentDirectory & "\"
-    strStartPath = ""
-    strFilter = "Imagen (*.jpg)|*.jpg|All Files (*.*)|*.*|"
-    strCaption = "Selecciona el Icono: "
+	strCurretPath = objShell.CurrentDirectory & "\"
+	strStartPath = ""
+	strFilter = "Imagen (*.jpg)|*.jpg|All Files (*.*)|*.*|"
+	strCaption = "Selecciona el Icono: "
 	strPath = Dlg.openfiledlg(CStr(strStartPath), , CStr(strFilter), CStr(strCaption))
 	strPath = Replace (strPath, strCurretPath ,"")
 	If(strPath = "") Then 
@@ -41,17 +40,17 @@ Sub SelectFile
 End Sub
 
 Function RepeatString( number, text )
-    Redim buffer(number)
-    RepeatString = Join( buffer, text )
+	Redim buffer(number)
+	RepeatString = Join( buffer, text )
 End Function
 
 Sub RandTitle
 On Error Resume Next
-    Set objShell = CreateObject("Wscript.Shell")
+	Set objShell = CreateObject("Wscript.Shell")
 	Dim max,min
 	max=999999999
 	min=1	
-    intValue = Int((max-min+1)*Rnd+min)
+	intValue = Int((max-min+1)*Rnd+min)
 	hexvalstr = Hex(intValue)
 	Malue = 11 - Len(hexvalstr)
 	extra = RepeatString( Malue, "0" )
