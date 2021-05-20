@@ -1,4 +1,5 @@
 @echo off
+cd ..
 goto:1
 :1
 rem Edit This
