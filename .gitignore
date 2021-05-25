@@ -14,4 +14,3 @@ target/
 .project
 *.cmd
 *.pfs0
-*.nacp
