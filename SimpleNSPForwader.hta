@@ -28,7 +28,7 @@ Sub SelectFile
 	Set objShell = CreateObject("Wscript.Shell")
 	strCurretPath = objShell.CurrentDirectory & "\"
 	strStartPath = ""
-	strFilter = "Imagen (*.jpg)|*.jpg|All Files (*.*)|*.*|"
+	strFilter = "Image (*.jpg;*.jpeg;*.png;*.apng)|*.jpg;*.jpeg;*.png;*.apng|All Files (*.*)|*.*|"
 	strCaption = "Selecciona el Icono: "
 	strPath = Dlg.openfiledlg(CStr(strStartPath), , CStr(strFilter), CStr(strCaption))
 	strPath = Replace (strPath, strCurretPath ,"")
@@ -71,6 +71,7 @@ On Error Resume Next
 	objShell.Run "cmd /c echo sdmc:"+APP_USE.Value+"> BuildTools\romfs\nextArgv",0,true
 	objShell.Run "cmd /c echo sdmc:"+APP_USE.Value+"> BuildTools\romfs\nextNroPath",0,true
 	objShell.Run "copy "+Chr(34)+APP_ICON.Value+Chr(34)+" BuildTools\control\icon_AmericanEnglish.dat",0,true
+	objShell.Run "BuildTools\convert -format jpg "+Chr(34)+APP_ICON.Value+Chr(34)+" -resize 256x256^! BuildTools\control\icon_AmericanEnglish.dat",0,true
 	objShell.Run "BuildTools\hacbrewpack.exe --titlepublisher "+Chr(34)+APP_AUTHOR.Value+Chr(34)+" --titlename "+Chr(34)+APP_TITLE.Value+Chr(34)+" --titleid "+APP_TITLEID.Value+" --nologo --romfs BuildTools\romfs --controldir BuildTools\control --htmldocdir BuildTools\HtmlDoc --exefsdir BuildTools\exefs -k BuildTools\keys.dat --nspdir .\",0,true
 	objShell.Run "cmd /c move /y "+LCase(APP_TITLEID.Value)+".nsp "+Chr(34)+APP_TITLE.Value+" ["+APP_TITLEID.Value+"][v0].nsp"+Chr(34),0,true
 	objShell.Run "cmd /c rmdir /S/Q hacbrewpack_backup",0,true
